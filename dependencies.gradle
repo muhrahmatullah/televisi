@@ -1,0 +1,74 @@
+ext {
+    // App dependencies
+    androidXVersion = '1.0.0'
+    androidXTestVersion = '1.1.0'
+    androidXAnnotationsVersion = '1.0.1'
+    androidXLegacySupport = '1.0.0'
+    materialVersion = '1.0.0'
+    cardVersion = '1.0.0'
+    recyclerViewVersion = '1.0.0'
+    appCompatVersion = '1.0.2'
+    constraintLayoutVersion = "1.1.3"
+    roomVersion = '2.1.0'
+    archLifecycleVersion = '2.0.0'
+    archVersion = '1.1.1'
+    junitVersion = '4.12'
+    hamcrestVersion = '1.3'
+    mockitoVersion = '2.23.4'
+    espressoVersion = '3.1.0'
+    dexMakerVersion = "1.2"
+    pagingVersion = '2.1.0'
+    glideVersion = '4.9.0'
+    idleResourceVersion = '3.2.0'
+    kotlinVersion = '1.3.41'
+    ktxVersion = '1.0.2'
+    androidTestRunnerVersion = '1.1.1'
+    coilVersion = "0.7.0"
+    viewPager2Version = "1.0.0-beta04"
+
+
+    libraries = [
+
+            coil                  : "io.coil-kt:coil:$coilVersion",
+            androidTestRunner     : "androidx.test:runner:$androidTestRunnerVersion",
+            kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+            // Dependencies for Android Support
+            ktx                   : "androidx.core:core-ktx:$ktxVersion",
+            appCompat             : "androidx.appcompat:appcompat:$appCompatVersion",
+            cardView              : "androidx.cardview:cardview:$cardVersion",
+            material              : "com.google.android.material:material:$materialVersion",
+            recyclerView          : "androidx.recyclerview:recyclerview:$recyclerViewVersion",
+            constraintLayout      : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
+            androidXAnnotations   : "androidx.annotation:annotation:$androidXAnnotationsVersion",
+            legacySupport         : "androidx.legacy:legacy-support-v4:$androidXLegacySupport",
+            viewPager2            : "androidx.viewpager2:viewpager2:$viewPager2Version",
+
+            // Dependencies for Architecture Component
+            room                  : "androidx.room:room-runtime:$roomVersion",
+            roomCompiler          : "androidx.room:room-compiler:$roomVersion",
+            lifecycle             : "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion",
+            lifecycleCompiler     : "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion",
+
+            // Dependencies for Paging
+            paging                : "androidx.paging:paging-runtime:$pagingVersion",
+
+            // Dependencies for local unit s
+            jUnit                 : "junit:junit:$junitVersion",
+            hamcrest              : "org.hamcrest:hamcrest-all:$hamcrestVersion",
+            mockito               : "org.mockito:mockito-core:$mockitoVersion",
+            coreTesting           : "androidx.arch.core:core-testing:$archLifecycleVersion",
+
+            mockitoAndroid        : "org.mockito:mockito-android:$mockitoVersion",
+
+            androidXTest          : "androidx.test.ext:junit:$androidXTestVersion",
+            androidXTestCore      : "androidx.test:core:$androidXTestVersion",
+            androidXTestRule      : "androidx.test:rules:$androidXTestVersion",
+            espressoCore          : "androidx.test.espresso:espresso-core:$espressoVersion",
+            espressoContrib       : "androidx.test.espresso:espresso-contrib:$espressoVersion",
+            lifecycleTest         : "androidx.arch.core:core-testing:$archLifecycleVersion",
+
+            // Dependencies for Idle Resource
+            espressoIdlingResource: "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
+    ]
+
+}
