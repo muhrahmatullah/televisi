@@ -5,11 +5,19 @@ import com.app.muhrahmatullah.dicodingjetpackmovie.MovieApp
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
+import javax.inject.Singleton
 
 /**
  * Created by muh.rahmatullah on 2019-09-13.
  */
-@Component(modules = [AppModule::class, AppBuilderModule::class, AndroidSupportInjectionModule::class])
+@Singleton
+@Component(
+    modules = [AppModule::class,
+        AppBuilderModule::class,
+        ViewModelFactoryModule::class,
+        ViewModelModule::class,
+        AndroidSupportInjectionModule::class]
+)
 interface AppComponent {
 
     @Component.Builder

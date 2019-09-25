@@ -1,5 +1,6 @@
 package com.app.muhrahmatullah.dicodingjetpackmovie.di
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
 import com.app.muhrahmatullah.dicodingjetpackmovie.MovieApp
@@ -24,6 +25,10 @@ class AppModule {
     internal fun provideApp(application: Application): MovieApp {
         return application as MovieApp
     }
+
+    @Provides
+    @Singleton
+    internal fun provideActivityContext(activity: Activity) : Context = activity
 
 
 }
