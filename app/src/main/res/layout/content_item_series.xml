@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="movie"
-            type="com.app.muhrahmatullah.dicodingjetpackmovie.entity.MovieEntity" />
+            name="tvSeries"
+            type="com.app.muhrahmatullah.dicodingjetpackmovie.entity.TvSeriesEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +27,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loadImage="@{movie.image}"
+            app:loadImage="@{tvSeries.image}"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -38,7 +38,7 @@
             android:ellipsize="end"
             android:padding="8dp"
             android:textAlignment="center"
-            android:text="@{movie.title}"
+            android:text="@{tvSeries.title}"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/poster_img"

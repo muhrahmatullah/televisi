@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.app.muhrahmatullah.dicodingjetpackmovie.R
 import com.app.muhrahmatullah.dicodingjetpackmovie.entity.MovieEntity
+import com.app.muhrahmatullah.dicodingjetpackmovie.entity.TvSeriesEntity
 import javax.inject.Inject
 
 /**
@@ -14,7 +15,14 @@ class FakeRepo @Inject constructor(){
 
     val movieList = mutableListOf<MovieEntity>()
 
+    val tvSeriesList = mutableListOf<TvSeriesEntity>()
+
     private val _movieLiveData = MutableLiveData<List<MovieEntity>>()
+
+    private val _tvSeriesLiveData = MutableLiveData<List<TvSeriesEntity>>()
+
+    private val tvSeriesLiveData : LiveData<List<TvSeriesEntity>>
+        get() = _tvSeriesLiveData
 
     private val movieLiveData : LiveData<List<MovieEntity>>
         get() = _movieLiveData
@@ -24,6 +32,68 @@ class FakeRepo @Inject constructor(){
         provideMovieData()
         _movieLiveData.value = movieList
         return movieLiveData
+    }
+
+    fun fetchTvSeries(): LiveData<List<TvSeriesEntity>> {
+        provideTvSeriesData()
+        _tvSeriesLiveData.value = tvSeriesList
+        return tvSeriesLiveData
+    }
+
+    private fun provideTvSeriesData() {
+        //definitely need to remove this very long string,
+        // only temporary for fake data
+        var tvSeries = TvSeriesEntity("Arrow",
+            "Arrow is an American superhero television series developed by Greg Berlanti, Marc Guggenheim, and Andrew Kreisberg based on the DC Comics character",
+            R.drawable.poster_arrow,
+            "7.7"
+        )
+        tvSeriesList.add(tvSeries)
+        tvSeries = TvSeriesEntity("Dragon ball",
+            "Dragon Ball is a Japanese media franchise created by Akira Toriyama in 1984. The initial ... Almost all of the Dragon Ball series, except for parts of Dragon Ball Super, takes place in Universe 7.",
+            R.drawable.poster_dragon_ball,
+            "7.4")
+        tvSeriesList.add(tvSeries)
+        tvSeries = TvSeriesEntity("Fairytail",
+            "Fairy Tail is a Japanese manga series written and illustrated by Hiro Mashima. It was serialized in Kodansha's Weekly Shōnen Magazine",
+            R.drawable.poster_fairytail,
+            "7")
+        tvSeriesList.add(tvSeries)
+        tvSeries = TvSeriesEntity("Family Guy",
+            "Basically a cartoon fro grownup people, there is also doc who can speaks",
+            R.drawable.poster_family_guy,
+            "8")
+        tvSeriesList.add(tvSeries)
+        tvSeries = TvSeriesEntity("Gotham",
+            "DC Series which took settings in the city where Batman lived",
+            R.drawable.poster_cold_persuit,
+            "6")
+        tvSeriesList.add(tvSeries)
+        tvSeries = TvSeriesEntity("Grey's Anatomy",
+            "A drama series about doctor, from intern to a doctor",
+            R.drawable.poster_grey_anatomy,
+            "7.8")
+        tvSeriesList.add(tvSeries)
+        tvSeries = TvSeriesEntity("Naruto Shippuden",
+            "Anime about a kid who has dream to be a village leader (Hokage)",
+            R.drawable.poster_naruto_shipudden,
+            "0.2")
+        tvSeriesList.add(tvSeries)
+        tvSeries = TvSeriesEntity("Super Girl",
+            "A series about Superman's not so popular cousin",
+            R.drawable.poster_supergirl,
+            "7.7")
+        tvSeriesList.add(tvSeries)
+        tvSeries = TvSeriesEntity("The Simpson",
+            "Cartoon with all the characters have a yellow skin",
+            R.drawable.poster_the_simpson,
+            "6.6")
+        tvSeriesList.add(tvSeries)
+        tvSeries = TvSeriesEntity("The Walking Dead",
+            "Zombies Everywhere",
+            R.drawable.poster_the_walking_dead,
+            "8")
+        tvSeriesList.add(tvSeries)
     }
 
     private fun provideMovieData() {

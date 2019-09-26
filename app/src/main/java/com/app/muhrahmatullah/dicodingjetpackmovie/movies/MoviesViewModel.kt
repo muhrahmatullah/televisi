@@ -15,9 +15,6 @@ class MoviesViewModel @Inject constructor(private val fakeRepo: FakeRepo): ViewM
 
     private val _movieTrigger = MutableLiveData<Boolean>()
 
-    val movieTrigger: LiveData<Boolean>
-        get() = _movieTrigger
-
     val movieData : LiveData<List<MovieEntity>> = Transformations.switchMap(_movieTrigger) {
         fakeRepo.fetchMovie()
     }
