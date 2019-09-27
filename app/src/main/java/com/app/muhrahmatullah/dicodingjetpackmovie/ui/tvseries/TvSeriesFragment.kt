@@ -1,4 +1,4 @@
-package com.app.muhrahmatullah.dicodingjetpackmovie.tvseries
+package com.app.muhrahmatullah.dicodingjetpackmovie.ui.tvseries
 
 
 import android.os.Bundle
@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 
 import com.app.muhrahmatullah.dicodingjetpackmovie.R
 import com.app.muhrahmatullah.dicodingjetpackmovie.databinding.FragmentTvSeriesBinding
-import com.app.muhrahmatullah.dicodingjetpackmovie.movies.MovieAdapter
+import com.app.muhrahmatullah.dicodingjetpackmovie.ui.ContentAdapter
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.AppExecutors
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.autoCleared
 import dagger.android.support.AndroidSupportInjection
@@ -35,7 +35,7 @@ class TvSeriesFragment : Fragment() {
         vmFactory
     }
 
-    var adapter by autoCleared<TvSeriesAdapter>()
+    var adapter by autoCleared<ContentAdapter>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
@@ -53,7 +53,8 @@ class TvSeriesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         fragmentTvSeriesBinding.lifecycleOwner = viewLifecycleOwner
 
-        val rvAdapter = TvSeriesAdapter(appExecutors)
+        val rvAdapter =
+            ContentAdapter(appExecutors)
 
         val gridLayout = GridLayoutManager(activity, 2)
         fragmentTvSeriesBinding.recyclerView.apply {

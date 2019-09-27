@@ -3,13 +3,10 @@ package com.app.muhrahmatullah.dicodingjetpackmovie
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentPagerAdapter
 import com.app.muhrahmatullah.dicodingjetpackmovie.databinding.ActivityHomeBinding
-import com.app.muhrahmatullah.dicodingjetpackmovie.movies.MoviesFragment
-import com.app.muhrahmatullah.dicodingjetpackmovie.tvseries.TvSeriesFragment
-import com.google.android.material.tabs.TabLayout
+import com.app.muhrahmatullah.dicodingjetpackmovie.ui.movies.MoviesFragment
+import com.app.muhrahmatullah.dicodingjetpackmovie.ui.tvseries.TvSeriesFragment
 import com.google.android.material.tabs.TabLayoutMediator
-import dagger.android.AndroidInjection
 
 class HomeActivity : AppCompatActivity() {
 

@@ -1,9 +1,8 @@
 package com.app.muhrahmatullah.dicodingjetpackmovie.di
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.app.muhrahmatullah.dicodingjetpackmovie.movies.MoviesViewModel
-import com.app.muhrahmatullah.dicodingjetpackmovie.tvseries.TvSeriesViewModel
+import com.app.muhrahmatullah.dicodingjetpackmovie.ui.movies.MoviesViewModel
+import com.app.muhrahmatullah.dicodingjetpackmovie.ui.tvseries.TvSeriesViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

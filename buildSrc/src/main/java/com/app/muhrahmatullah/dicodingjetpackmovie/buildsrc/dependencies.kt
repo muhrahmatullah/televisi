@@ -68,7 +68,7 @@ object Libs {
         const val viewPager2 = "androidx.viewpager2:viewpager2:$viewPager2Version"
 
         object Navigation {
-            private const val version = "2.2.0-alpha01"
+            private const val version = "2.2.0-alpha03"
             const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
             const val ui = "androidx.navigation:navigation-ui-ktx:$version"
             const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
@@ -108,6 +108,7 @@ object Libs {
             const val extensions = "androidx.lifecycle:lifecycle-extensions:$version"
             const val compiler = "androidx.lifecycle:lifecycle-compiler:$version"
             const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+            const val legacy = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
         }
 
         object Room {

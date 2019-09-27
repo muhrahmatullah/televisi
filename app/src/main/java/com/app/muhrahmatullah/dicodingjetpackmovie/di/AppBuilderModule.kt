@@ -1,8 +1,8 @@
 package com.app.muhrahmatullah.dicodingjetpackmovie.di
 
 
-import com.app.muhrahmatullah.dicodingjetpackmovie.movies.MoviesFragment
-import com.app.muhrahmatullah.dicodingjetpackmovie.tvseries.TvSeriesFragment
+import com.app.muhrahmatullah.dicodingjetpackmovie.ui.movies.MoviesFragment
+import com.app.muhrahmatullah.dicodingjetpackmovie.ui.tvseries.TvSeriesFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

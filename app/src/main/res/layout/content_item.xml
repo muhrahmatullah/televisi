@@ -6,7 +6,7 @@
     <data>
         <variable
             name="movie"
-            type="com.app.muhrahmatullah.dicodingjetpackmovie.entity.MovieEntity" />
+            type="com.app.muhrahmatullah.dicodingjetpackmovie.entity.Entity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
