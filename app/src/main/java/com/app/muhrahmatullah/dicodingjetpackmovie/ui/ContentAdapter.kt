@@ -14,9 +14,11 @@ import com.app.muhrahmatullah.dicodingjetpackmovie.util.DataBoundListAdapter
  * Created by muh.rahmatullah on 2019-09-26.
  */
 class ContentAdapter(
-    appExecutors: AppExecutors
+    appExecutors: AppExecutors,
+    private val repoClickCallback: ((Entity) -> Unit)?
 ) : DataBoundListAdapter<Entity, ContentItemBinding>(
     appExecutors = appExecutors,
+
     diffCallback = object : DiffUtil.ItemCallback<Entity>() {
         override fun areItemsTheSame(oldItem: Entity, newItem: Entity): Boolean {
             return oldItem.title == newItem.title

@@ -17,6 +17,7 @@ import com.app.muhrahmatullah.dicodingjetpackmovie.databinding.FragmentTvSeriesB
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.ContentAdapter
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.AppExecutors
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.autoCleared
+import com.app.muhrahmatullah.dicodingjetpackmovie.util.findNavController
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -46,7 +47,8 @@ class TvSeriesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        fragmentTvSeriesBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_tv_series, container, false)
+        fragmentTvSeriesBinding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_tv_series, container, false)
         return fragmentTvSeriesBinding.root
     }
 
@@ -72,5 +74,6 @@ class TvSeriesFragment : Fragment() {
 
     }
 
+    fun navController() = findNavController()
 
 }

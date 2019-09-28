@@ -1,6 +1,7 @@
 package com.app.muhrahmatullah.dicodingjetpackmovie.di
 
 import androidx.lifecycle.ViewModel
+import com.app.muhrahmatullah.dicodingjetpackmovie.ui.detail.DetailContentViewModel
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.movies.MoviesViewModel
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.tvseries.TvSeriesViewModel
 import dagger.Binds
@@ -22,4 +23,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(TvSeriesViewModel::class)
     abstract fun provideTvSeriesViewModel(tvSeriesViewModel: TvSeriesViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailContentViewModel::class)
+    abstract fun provideDetialContentViewModel(detailContentViewModel: DetailContentViewModel): ViewModel
+
 }

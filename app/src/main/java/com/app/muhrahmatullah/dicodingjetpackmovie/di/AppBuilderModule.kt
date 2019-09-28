@@ -1,6 +1,7 @@
 package com.app.muhrahmatullah.dicodingjetpackmovie.di
 
 
+import com.app.muhrahmatullah.dicodingjetpackmovie.ui.detail.DetailContentFragment
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.movies.MoviesFragment
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.tvseries.TvSeriesFragment
 import dagger.Module
@@ -17,4 +18,7 @@ abstract class AppBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun provideTvSeriesFragment(): TvSeriesFragment
+
+    @ContributesAndroidInjector
+    abstract fun provideDetailFragment(): DetailContentFragment
 }
