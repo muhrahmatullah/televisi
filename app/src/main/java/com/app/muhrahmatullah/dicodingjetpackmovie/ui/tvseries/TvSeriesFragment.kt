@@ -55,25 +55,25 @@ class TvSeriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         fragmentTvSeriesBinding.lifecycleOwner = viewLifecycleOwner
-        tvSeriesViewModel.tvData.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
-        })
-        val rvAdapter =
-            ContentAdapter(appExecutors) {item ->
-                navController().navigate(
-                    HomeFragmentDirections.toDetailPage(item)
-                )
-            }
-
-        val gridLayout = GridLayoutManager(activity, 2)
-        fragmentTvSeriesBinding.recyclerView.apply {
-            layoutManager = gridLayout
-            adapter = rvAdapter
-        }
-
-        adapter = rvAdapter
-
-        tvSeriesViewModel.triggerTvSeries()
+//        tvSeriesViewModel.tvData.observe(viewLifecycleOwner, Observer {
+//            adapter.submitList(it)
+//        })
+//        val rvAdapter =
+//            ContentAdapter(appExecutors) {item ->
+//                navController().navigate(
+//                    HomeFragmentDirections.toDetailPage(item)
+//                )
+//            }
+//
+//        val gridLayout = GridLayoutManager(activity, 2)
+//        fragmentTvSeriesBinding.recyclerView.apply {
+//            layoutManager = gridLayout
+//            adapter = rvAdapter
+//        }
+//
+//        adapter = rvAdapter
+//
+//        tvSeriesViewModel.triggerTvSeries()
     }
 
     fun navController() = findNavController()

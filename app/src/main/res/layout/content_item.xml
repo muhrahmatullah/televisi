@@ -28,6 +28,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:loadImage="@{movie.image}"
+            app:transitionName="@{movie.title}"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView

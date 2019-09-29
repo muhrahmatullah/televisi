@@ -7,6 +7,14 @@
         <variable
             name="entity"
             type="com.app.muhrahmatullah.dicodingjetpackmovie.entity.Entity" />
+
+        <variable
+            name="listener"
+            type="com.app.muhrahmatullah.dicodingjetpackmovie.util.ImageLoadingListener" />
+
+        <variable
+            name="args"
+            type="com.app.muhrahmatullah.dicodingjetpackmovie.ui.detail.DetailContentFragmentArgs" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +34,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loadImage="@{entity.image}"
+            app:image="@{entity.image}"
+            app:transitionName="@{args.entity.title}"
+            app:imageLoadListener="@{listener}"
             tools:src="@tools:sample/avatars" />
 
         <TextView

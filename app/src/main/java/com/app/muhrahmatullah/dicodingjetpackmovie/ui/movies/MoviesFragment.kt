@@ -2,6 +2,7 @@ package com.app.muhrahmatullah.dicodingjetpackmovie.ui.movies
 
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.app.muhrahmatullah.dicodingjetpackmovie.R
 import com.app.muhrahmatullah.dicodingjetpackmovie.databinding.FragmentMoviesBinding
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.GridLayoutManager
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.ContentAdapter
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.home.HomeFragmentDirections
@@ -52,25 +54,33 @@ class MoviesFragment : Fragment() {
     ): View? {
         fragmentMoviesBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_movies, container, false)
+        sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move)
         return fragmentMoviesBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         fragmentMoviesBinding.lifecycleOwner = viewLifecycleOwner
 
-        val rvAdapter = ContentAdapter(appExecutors) { item ->
+        val rvAdapter = ContentAdapter(appExecutors) { item, imageView ->
+            val extras = FragmentNavigatorExtras(
+                imageView to item.title
+            )
             navController().navigate(
-                HomeFragmentDirections.toDetailPage(item)
+                HomeFragmentDirections.toDetailPage(item), extras
             )
         }
-
 
         val gridLayoutManager = GridLayoutManager(activity, 2)
         fragmentMoviesBinding.recyclerView.apply {
             layoutManager = gridLayoutManager
             adapter = rvAdapter
+            //delay all the animation untill all data are loaded
+            postponeEnterTransition()
+            viewTreeObserver.addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
         }
-
         adapter = rvAdapter
 
         moviesViewModel.data.observe(viewLifecycleOwner, Observer { movie ->
