@@ -4,12 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.app.muhrahmatullah.dicodingjetpackmovie.R
 import com.app.muhrahmatullah.dicodingjetpackmovie.entity.Entity
+import com.app.muhrahmatullah.dicodingjetpackmovie.testing.OpenForTesting
 import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
  * Created by muh.rahmatullah on 2019-09-24.
  */
+@OpenForTesting
 @Singleton
 class FakeRepo @Inject constructor(){
 
@@ -28,8 +30,8 @@ class FakeRepo @Inject constructor(){
         get() = _movieLiveData
 
 
-    var isLoadTv = false
-    var isLoadMovie = false
+    private var isLoadTv = false
+    private var isLoadMovie = false
 
     fun fetchMovie(): LiveData<List<Entity>> {
         if (!isLoadMovie) {

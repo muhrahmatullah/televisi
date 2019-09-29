@@ -36,7 +36,8 @@ object Libs {
         const val fabricPlugin = "io.fabric.tools:gradle:1.31.0"
 
         const val openSourceLicensesPlugin = "com.google.android.gms:oss-licenses-plugin:0.9.5"
-        const val openSourceLicensesLibrary = "com.google.android.gms:play-services-oss-licenses:17.0.0"
+        const val openSourceLicensesLibrary =
+            "com.google.android.gms:play-services-oss-licenses:17.0.0"
     }
 
     object Kotlin {
@@ -167,13 +168,21 @@ object Libs {
 
     object AssistedInject {
         private const val version = "0.5.0"
-        const val annotationDagger2 = "com.squareup.inject:assisted-inject-annotations-dagger2:$version"
-        const val processorDagger2 = "com.squareup.inject:assisted-inject-processor-dagger2:$version"
+        const val annotationDagger2 =
+            "com.squareup.inject:assisted-inject-annotations-dagger2:$version"
+        const val processorDagger2 =
+            "com.squareup.inject:assisted-inject-processor-dagger2:$version"
     }
 
     object Roomigrant {
         private const val version = "0.1.7"
         const val library = "com.github.MatrixDev.Roomigrant:RoomigrantLib:$version"
         const val compiler = "com.github.MatrixDev.Roomigrant:RoomigrantCompiler:$version"
+    }
+
+    object Mockito {
+        private const val version = "2.23.4"
+        const val core = "org.mockito:mockito-core:$version"
+        const val android = "org.mockito:mockito-android:$version"
     }
 }
