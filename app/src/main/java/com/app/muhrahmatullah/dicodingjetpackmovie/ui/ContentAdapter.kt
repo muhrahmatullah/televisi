@@ -1,9 +1,11 @@
 package com.app.muhrahmatullah.dicodingjetpackmovie.ui
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.app.muhrahmatullah.dicodingjetpackmovie.R
 import com.app.muhrahmatullah.dicodingjetpackmovie.databinding.ContentItemBinding
 import com.app.muhrahmatullah.dicodingjetpackmovie.entity.Entity
@@ -15,7 +17,7 @@ import com.app.muhrahmatullah.dicodingjetpackmovie.util.DataBoundListAdapter
  */
 class ContentAdapter(
     appExecutors: AppExecutors,
-    private val repoClickCallback: ((Entity) -> Unit)?
+    private val itemClickCallback: ((Entity) -> Unit)?
 ) : DataBoundListAdapter<Entity, ContentItemBinding>(
     appExecutors = appExecutors,
 
@@ -37,6 +39,13 @@ class ContentAdapter(
             parent,
             false
         )
+
+        binding.root.setOnClickListener {
+            binding.movie?.let {
+                itemClickCallback?.invoke(it)
+            }
+        }
+
         return binding
     }
 

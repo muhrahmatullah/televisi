@@ -38,4 +38,9 @@ class DetailContentFragment : Fragment() {
             R.layout.detail_content_fragment, container, false)
         return detailContentFragmentBinding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val params = arguments?.let { DetailContentFragmentArgs.fromBundle(it) }
+        detailContentFragmentBinding.entity = params?.entity
+    }
 }

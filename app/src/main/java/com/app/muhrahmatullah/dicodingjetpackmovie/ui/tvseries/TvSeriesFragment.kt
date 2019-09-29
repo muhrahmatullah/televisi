@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.app.muhrahmatullah.dicodingjetpackmovie.R
 import com.app.muhrahmatullah.dicodingjetpackmovie.databinding.FragmentTvSeriesBinding
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.ContentAdapter
+import com.app.muhrahmatullah.dicodingjetpackmovie.ui.home.HomeFragmentDirections
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.AppExecutors
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.autoCleared
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.findNavController
@@ -54,9 +55,15 @@ class TvSeriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         fragmentTvSeriesBinding.lifecycleOwner = viewLifecycleOwner
-
+        tvSeriesViewModel.tvData.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+        })
         val rvAdapter =
-            ContentAdapter(appExecutors)
+            ContentAdapter(appExecutors) {item ->
+                navController().navigate(
+                    HomeFragmentDirections.toDetailPage(item)
+                )
+            }
 
         val gridLayout = GridLayoutManager(activity, 2)
         fragmentTvSeriesBinding.recyclerView.apply {
@@ -67,11 +74,6 @@ class TvSeriesFragment : Fragment() {
         adapter = rvAdapter
 
         tvSeriesViewModel.triggerTvSeries()
-
-        tvSeriesViewModel.tvData.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
-        })
-
     }
 
     fun navController() = findNavController()

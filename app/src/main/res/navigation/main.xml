@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main.xml"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.app.muhrahmatullah.dicodingjetpackmovie.ui.home.HomeFragment"
+        android:label="@string/app_name">
+        <action
+            android:id="@+id/toDetailPage"
+            app:destination="@id/detailContentFragment"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieFragment"
+        android:name="com.app.muhrahmatullah.dicodingjetpackmovie.ui.movies.MoviesFragment"
+        android:label="Movie">
+    </fragment>
+
+    <fragment
+        android:id="@+id/tvSeriesFragment"
+        android:name="com.app.muhrahmatullah.dicodingjetpackmovie.ui.tvseries.TvSeriesFragment"
+        android:label="Tv Series">
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailContentFragment"
+        android:name="com.app.muhrahmatullah.dicodingjetpackmovie.ui.detail.DetailContentFragment"
+        android:label="Detail">
+
+        <argument
+            android:name="entity"
+            app:argType="com.app.muhrahmatullah.dicodingjetpackmovie.entity.Entity"/>
+    </fragment>
+
+</navigation>

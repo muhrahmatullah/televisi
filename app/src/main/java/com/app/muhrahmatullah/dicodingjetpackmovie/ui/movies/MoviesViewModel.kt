@@ -11,16 +11,15 @@ import javax.inject.Inject
 /**
  * Created by muh.rahmatullah on 2019-09-24.
  */
-class MoviesViewModel @Inject constructor(private val fakeRepo: FakeRepo): ViewModel() {
+class MoviesViewModel @Inject constructor(private val fakeRepo: FakeRepo) : ViewModel() {
 
     private val _movieTrigger = MutableLiveData<Boolean>()
 
-    val data : LiveData<List<Entity>> = Transformations.switchMap(_movieTrigger) {
+    val data: LiveData<List<Entity>> = Transformations.switchMap(_movieTrigger) {
         fakeRepo.fetchMovie()
     }
 
     fun triggerMovie() {
         _movieTrigger.value = true
     }
-
 }

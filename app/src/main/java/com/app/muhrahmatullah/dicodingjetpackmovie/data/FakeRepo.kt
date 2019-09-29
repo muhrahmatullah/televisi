@@ -5,11 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import com.app.muhrahmatullah.dicodingjetpackmovie.R
 import com.app.muhrahmatullah.dicodingjetpackmovie.entity.Entity
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Created by muh.rahmatullah on 2019-09-24.
  */
-
+@Singleton
 class FakeRepo @Inject constructor(){
 
     val movieList = mutableListOf<Entity>()
@@ -27,14 +28,23 @@ class FakeRepo @Inject constructor(){
         get() = _movieLiveData
 
 
+    var isLoadTv = false
+    var isLoadMovie = false
+
     fun fetchMovie(): LiveData<List<Entity>> {
-        provideMovieData()
+        if (!isLoadMovie) {
+            provideMovieData()
+            isLoadMovie = true
+        }
         _movieLiveData.value = movieList
         return liveData
     }
 
     fun fetchTvSeries(): LiveData<List<Entity>> {
-        provideTvSeriesData()
+        if (!isLoadTv) {
+            provideTvSeriesData()
+            isLoadTv = true
+        }
         _tvSeriesLiveData.value = tvSeriesList
         return tvSeriesLiveData
     }

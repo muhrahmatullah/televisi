@@ -18,15 +18,5 @@ class HomeActivity : AppCompatActivity() {
         supportActionBar?.elevation = 0f
         homeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home)
 
-        val pagerAdapter = FragmentViewPagerAdapter(supportFragmentManager, lifecycle)
-        pagerAdapter.populateFragment(MoviesFragment(), "Popular Movie")
-        pagerAdapter.populateFragment(TvSeriesFragment(), "Tv Series")
-
-        homeBinding.viewPager.adapter = pagerAdapter
-
-        TabLayoutMediator(homeBinding.tabs, homeBinding.viewPager,
-            TabLayoutMediator.OnConfigureTabCallback
-            { tab, position -> tab.text = pagerAdapter.getPageTitle(position) }).attach()
-
     }
 }
