@@ -75,9 +75,9 @@ class MoviesFragment : Fragment() {
             layoutManager = gridLayoutManager
             adapter = rvAdapter
             //delay all the animation untill all data are loaded
-            postponeEnterTransition()
+            parentFragment?.postponeEnterTransition()
             viewTreeObserver.addOnPreDrawListener {
-                startPostponedEnterTransition()
+                parentFragment?.startPostponedEnterTransition()
                 true
             }
         }
