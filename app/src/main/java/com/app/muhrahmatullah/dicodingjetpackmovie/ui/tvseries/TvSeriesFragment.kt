@@ -10,7 +10,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.transition.TransitionInflater
 
 import com.app.muhrahmatullah.dicodingjetpackmovie.R
 import com.app.muhrahmatullah.dicodingjetpackmovie.databinding.FragmentTvSeriesBinding
@@ -50,30 +52,40 @@ class TvSeriesFragment : Fragment() {
     ): View? {
         fragmentTvSeriesBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_tv_series, container, false)
+        sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move)
         return fragmentTvSeriesBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         fragmentTvSeriesBinding.lifecycleOwner = viewLifecycleOwner
-//        tvSeriesViewModel.tvData.observe(viewLifecycleOwner, Observer {
-//            adapter.submitList(it)
-//        })
-//        val rvAdapter =
-//            ContentAdapter(appExecutors) {item ->
-//                navController().navigate(
-//                    HomeFragmentDirections.toDetailPage(item)
-//                )
-//            }
-//
-//        val gridLayout = GridLayoutManager(activity, 2)
-//        fragmentTvSeriesBinding.recyclerView.apply {
-//            layoutManager = gridLayout
-//            adapter = rvAdapter
-//        }
-//
-//        adapter = rvAdapter
-//
-//        tvSeriesViewModel.triggerTvSeries()
+        tvSeriesViewModel.tvData.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+        })
+        val rvAdapter =
+            ContentAdapter(appExecutors) { item, imageView ->
+                val extras = FragmentNavigatorExtras(
+                    imageView to item.title
+                )
+                navController().navigate(
+                    HomeFragmentDirections.toDetailPage(item), extras
+                )
+            }
+
+        val gridLayout = GridLayoutManager(activity, 2)
+        fragmentTvSeriesBinding.recyclerView.apply {
+            layoutManager = gridLayout
+            adapter = rvAdapter
+            //delay all the animation untill all data are loaded
+            parentFragment?.postponeEnterTransition()
+            viewTreeObserver.addOnPreDrawListener {
+                parentFragment?.startPostponedEnterTransition()
+                true
+            }
+        }
+
+        adapter = rvAdapter
+
+        tvSeriesViewModel.triggerTvSeries()
     }
 
     fun navController() = findNavController()
