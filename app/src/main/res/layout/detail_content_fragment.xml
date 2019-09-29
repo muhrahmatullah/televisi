@@ -11,10 +11,6 @@
         <variable
             name="listener"
             type="com.app.muhrahmatullah.dicodingjetpackmovie.util.ImageLoadingListener" />
-
-        <variable
-            name="args"
-            type="com.app.muhrahmatullah.dicodingjetpackmovie.ui.detail.DetailContentFragmentArgs" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,7 +31,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:image="@{entity.image}"
-            app:transitionName="@{args.entity.title}"
+            app:transitionName="@{entity.title}"
             app:imageLoadListener="@{listener}"
             tools:src="@tools:sample/avatars" />
 
@@ -47,6 +43,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:text="@{entity.title}"
+            app:transitionName="@{entity.desc}"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold"

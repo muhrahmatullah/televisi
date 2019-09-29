@@ -62,9 +62,10 @@ class TvSeriesFragment : Fragment() {
             adapter.submitList(it)
         })
         val rvAdapter =
-            ContentAdapter(appExecutors) { item, imageView ->
+            ContentAdapter(appExecutors) { item, imageView, textView ->
                 val extras = FragmentNavigatorExtras(
-                    imageView to item.title
+                    imageView to item.title,
+                    textView to item.desc
                 )
                 navController().navigate(
                     HomeFragmentDirections.toDetailPage(item), extras

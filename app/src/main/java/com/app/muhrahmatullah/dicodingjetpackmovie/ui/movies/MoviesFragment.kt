@@ -60,9 +60,10 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         fragmentMoviesBinding.lifecycleOwner = viewLifecycleOwner
 
-        val rvAdapter = ContentAdapter(appExecutors) { item, imageView ->
+        val rvAdapter = ContentAdapter(appExecutors) { item, imageView, textView ->
             val extras = FragmentNavigatorExtras(
-                imageView to item.title
+                imageView to item.title,
+                textView to item.desc
             )
             navController().navigate(
                 HomeFragmentDirections.toDetailPage(item), extras

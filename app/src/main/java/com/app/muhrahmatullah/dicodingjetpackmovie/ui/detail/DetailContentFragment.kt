@@ -72,6 +72,5 @@ class DetailContentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val params = arguments?.let { DetailContentFragmentArgs.fromBundle(it) }
         detailContentFragmentBinding.entity = params?.entity
-        detailContentFragmentBinding.args = params
     }
 }
