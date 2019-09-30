@@ -9,11 +9,14 @@ import com.app.muhrahmatullah.dicodingjetpackmovie.FragmentViewPagerAdapter
 
 import com.app.muhrahmatullah.dicodingjetpackmovie.R
 import com.app.muhrahmatullah.dicodingjetpackmovie.databinding.FragmentHomeBinding
+import com.app.muhrahmatullah.dicodingjetpackmovie.di.Injectable
+import com.app.muhrahmatullah.dicodingjetpackmovie.testing.OpenForTesting
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.movies.MoviesFragment
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.tvseries.TvSeriesFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
-class HomeFragment : Fragment() {
+@OpenForTesting
+class HomeFragment : Fragment(){
 
     private lateinit var homeBinding: FragmentHomeBinding
 

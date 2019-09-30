@@ -16,6 +16,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.GridLayoutManager
+import com.app.muhrahmatullah.dicodingjetpackmovie.di.Injectable
+import com.app.muhrahmatullah.dicodingjetpackmovie.testing.OpenForTesting
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.ContentAdapter
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.home.HomeFragmentDirections
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.AppExecutors
@@ -24,6 +26,7 @@ import com.app.muhrahmatullah.dicodingjetpackmovie.util.findNavController
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
+@OpenForTesting
 class MoviesFragment : Fragment() {
 
     @Inject

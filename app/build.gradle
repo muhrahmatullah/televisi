@@ -71,7 +71,9 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt Libs.AndroidX.Lifecycle.compiler
     testImplementation Libs.junit
-    androidTestImplementation Libs.AndroidX.Test.runner
+//    androidTestImplementation Libs.AndroidX.Test.runner
+    androidTestImplementation Libs.AndroidX.Test.rules
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation Libs.AndroidX.Test.espressoCore
 
     implementation Libs.Google.material
