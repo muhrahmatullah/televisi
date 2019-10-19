@@ -92,4 +92,8 @@ dependencies {
     androidTestImplementation Libs.Mockito.core
     androidTestImplementation Libs.Mockito.android
 
+    implementation Libs.Retrofit.retrofit
+    implementation Libs.Retrofit.gsonConverter
+    implementation Libs.Google.gson
+
 }
