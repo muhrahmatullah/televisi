@@ -35,4 +35,7 @@ abstract class NetworkResource<ResultType> {
     @MainThread
     protected abstract fun createCall(): LiveData<ApiResponse<ResultType>>
 
+    fun asLiveData(): LiveData<Resource<ResultType>> = result
+
+
 }

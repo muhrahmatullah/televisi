@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.app.muhrahmatullah.dicodingjetpackmovie">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".MovieApp"
         android:allowBackup="true"
