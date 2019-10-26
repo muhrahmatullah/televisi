@@ -34,7 +34,7 @@
 
         <argument
             android:name="entity"
-            app:argType="com.app.muhrahmatullah.dicodingjetpackmovie.entity.Entity"/>
+            app:argType="com.app.muhrahmatullah.dicodingjetpackmovie.entity.Result"/>
     </fragment>
 
 </navigation>

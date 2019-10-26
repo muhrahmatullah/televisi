@@ -16,6 +16,7 @@ import androidx.transition.TransitionInflater
 
 import com.app.muhrahmatullah.dicodingjetpackmovie.R
 import com.app.muhrahmatullah.dicodingjetpackmovie.databinding.FragmentTvSeriesBinding
+import com.app.muhrahmatullah.dicodingjetpackmovie.rest.Status
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.ContentAdapter
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.home.HomeFragmentDirections
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.AppExecutors
@@ -50,22 +51,32 @@ class TvSeriesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        fragmentTvSeriesBinding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_tv_series, container, false)
-        sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move)
+        fragmentTvSeriesBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_tv_series, container, false
+        )
+        sharedElementReturnTransition =
+            TransitionInflater.from(context).inflateTransition(R.transition.move)
         return fragmentTvSeriesBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         fragmentTvSeriesBinding.lifecycleOwner = viewLifecycleOwner
-        tvSeriesViewModel.tvData.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
+        tvSeriesViewModel.tvData.observe(viewLifecycleOwner, Observer { tvShow ->
+            fragmentTvSeriesBinding.resource = tvShow
+            when (tvShow.status) {
+                Status.LOADING -> {
+                }
+                Status.ERROR -> {
+                }
+                Status.SUCCESS -> adapter.submitList(tvShow.data?.results)
+            }
         })
         val rvAdapter =
             ContentAdapter(appExecutors) { item, imageView, textView ->
-                val extras = FragmentNavigatorExtras(
-                    imageView to item.title,
-                    textView to item.desc
+                                val extras = FragmentNavigatorExtras(
+                    imageView to item.name!!,
+                    textView to item.overview!!
                 )
                 navController().navigate(
                     HomeFragmentDirections.toDetailPage(item), extras
