@@ -1,14 +1,20 @@
 package com.app.muhrahmatullah.dicodingjetpackmovie.movie
 
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.swipeLeft
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.app.muhrahmatullah.dicodingjetpackmovie.HomeActivity
 import com.app.muhrahmatullah.dicodingjetpackmovie.R
+import com.app.muhrahmatullah.dicodingjetpackmovie.util.EspressoIdlingResource
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -23,6 +29,16 @@ class AppFlowTest {
     @JvmField
     val activityRule = ActivityTestRule(HomeActivity::class.java, true, true)
 
+    @Before
+    fun setUp() {
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.espressoIdlingResource)
+    }
+
+    @After
+    fun tearDownAll() {
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.espressoIdlingResource)
+    }
+
     //this test will be refactored using a proper code
     @Test
     fun checkMovie() {
@@ -32,12 +48,15 @@ class AppFlowTest {
 
         //check if recylerview movie exist
         onView(withId(R.id.recyclerView)).check(matches(isDisplayed()))
-        // pick one movie in movie fragment index 0
-        onView(withText("A Star is Born")).perform(click())
-        // need to refactor this using idling resources
-        // if this line is deleted, the test won't passed since it needs to wait untill the transition finished
-        Thread.sleep(1001)
-        onView(withText("A Star is Born")).check(matches(isDisplayed()))
+        //perfrom click on index 0
+        onView(withId(R.id.recyclerView)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                0,
+                click()
+            )
+        )
+        //check if the overview text is displayed
+        onView(withId(R.id.textView2)).check(matches(isDisplayed()))
     }
 
     //this test will be refactored using a proper code
@@ -51,12 +70,14 @@ class AppFlowTest {
         onView(withId(R.id.recyclerView)).check(matches(isDisplayed()))
         // swipe left to view pager
         onView(withId(R.id.view_pager)).perform(swipeLeft())
-        // pick one movie in movie fragment index 0
-        onView(withText("Arrow")).perform(click())
-        // need to refactor this using idling resources
-        // if this line is deleted, the test won't passed since it needs to wait untill the transition finished
-        Thread.sleep(1001)
-        onView(withText("Arrow")).check(matches(isDisplayed()))
+        //perfrom click on index 0
+        onView(withId(R.id.recyclerView)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                0,
+                click()
+            )
+        )
+        onView(withId(R.id.textView2)).check(matches(isDisplayed()))
     }
 
 

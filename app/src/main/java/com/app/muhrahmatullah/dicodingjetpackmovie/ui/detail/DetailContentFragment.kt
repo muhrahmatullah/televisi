@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 
 import com.app.muhrahmatullah.dicodingjetpackmovie.R
 import com.app.muhrahmatullah.dicodingjetpackmovie.databinding.DetailContentFragmentBinding
+import com.app.muhrahmatullah.dicodingjetpackmovie.util.EspressoIdlingResource
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.ImageLoadingListener
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -35,6 +36,7 @@ class DetailContentFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
         super.onCreate(savedInstanceState)
+        EspressoIdlingResource.increment()
     }
 
     override fun onCreateView(
@@ -53,11 +55,17 @@ class DetailContentFragment : Fragment() {
             override fun onSuccess() {
               //image loading success
                 startPostponedEnterTransition()
+                if (!EspressoIdlingResource.espressoIdlingResource.isIdleNow) {
+                    EspressoIdlingResource.decrement()
+                }
             }
 
             override fun onFailed() {
                 //image loading error
                 startPostponedEnterTransition()
+                if (!EspressoIdlingResource.espressoIdlingResource.isIdleNow) {
+                    EspressoIdlingResource.decrement()
+                }
             }
         }
 

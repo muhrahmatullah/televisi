@@ -20,6 +20,7 @@ import com.app.muhrahmatullah.dicodingjetpackmovie.rest.Status
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.ContentAdapter
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.home.HomeFragmentDirections
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.AppExecutors
+import com.app.muhrahmatullah.dicodingjetpackmovie.util.EspressoIdlingResource
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.autoCleared
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.findNavController
 import dagger.android.support.AndroidSupportInjection
@@ -45,6 +46,9 @@ class TvSeriesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
         super.onCreate(savedInstanceState)
+        EspressoIdlingResource.increment()
+
+        tvSeriesViewModel.triggerTvSeries()
     }
 
     override fun onCreateView(
@@ -68,8 +72,16 @@ class TvSeriesFragment : Fragment() {
                 Status.LOADING -> {
                 }
                 Status.ERROR -> {
+                    if (!EspressoIdlingResource.espressoIdlingResource.isIdleNow) {
+                        EspressoIdlingResource.decrement()
+                    }
                 }
-                Status.SUCCESS -> adapter.submitList(tvShow.data?.results)
+                Status.SUCCESS -> {
+                    adapter.submitList(tvShow.data?.results)
+                    if (!EspressoIdlingResource.espressoIdlingResource.isIdleNow) {
+                        EspressoIdlingResource.decrement()
+                    }
+                }
             }
         })
         val rvAdapter =
@@ -96,8 +108,6 @@ class TvSeriesFragment : Fragment() {
         }
 
         adapter = rvAdapter
-
-        tvSeriesViewModel.triggerTvSeries()
     }
 
     fun navController() = findNavController()

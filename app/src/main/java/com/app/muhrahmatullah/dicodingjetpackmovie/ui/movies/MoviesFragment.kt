@@ -24,6 +24,7 @@ import com.app.muhrahmatullah.dicodingjetpackmovie.testing.OpenForTesting
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.ContentAdapter
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.home.HomeFragmentDirections
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.AppExecutors
+import com.app.muhrahmatullah.dicodingjetpackmovie.util.EspressoIdlingResource
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.autoCleared
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.findNavController
 import dagger.android.support.AndroidSupportInjection
@@ -49,6 +50,8 @@ class MoviesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
         super.onCreate(savedInstanceState)
+        EspressoIdlingResource.increment()
+        moviesViewModel.triggerMovie()
     }
 
     override fun onCreateView(
@@ -91,13 +94,19 @@ class MoviesFragment : Fragment() {
             fragmentMoviesBinding.resource = movie
             when(movie.status) {
                 Status.LOADING -> {}
-                Status.ERROR -> {}
-                Status.SUCCESS -> adapter.submitList(movie.data?.results)
+                Status.ERROR -> {
+                    if (!EspressoIdlingResource.espressoIdlingResource.isIdleNow) {
+                        EspressoIdlingResource.decrement()
+                    }
+                }
+                Status.SUCCESS -> {
+                    adapter.submitList(movie.data?.results)
+                    if (!EspressoIdlingResource.espressoIdlingResource.isIdleNow) {
+                        EspressoIdlingResource.decrement()
+                    }
+                }
             }
         })
-
-        moviesViewModel.triggerMovie()
-
     }
 
     fun navController() = findNavController()
