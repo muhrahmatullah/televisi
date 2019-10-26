@@ -45,7 +45,7 @@ class AppModule {
             val httpUrl = original.url()
 
             val url = httpUrl.newBuilder()
-                .addQueryParameter("apiKey", BuildConfig.TMDB_API_KEY)
+                .addQueryParameter("api_key", BuildConfig.TMDB_API_KEY)
                 .build()
 
             val requestBuilder = original.newBuilder().url(url)
