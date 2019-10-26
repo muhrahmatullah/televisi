@@ -3,7 +3,10 @@ package com.app.muhrahmatullah.dicodingjetpackmovie.ui.tvseries
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.app.muhrahmatullah.dicodingjetpackmovie.data.FakeRepo
+import com.app.muhrahmatullah.dicodingjetpackmovie.data.TmdbRepository
 import com.app.muhrahmatullah.dicodingjetpackmovie.entity.Entity
+import com.app.muhrahmatullah.dicodingjetpackmovie.entity.MovieResponse
+import com.app.muhrahmatullah.dicodingjetpackmovie.rest.Resource
 import org.junit.Before
 
 import org.junit.Assert.*
@@ -21,10 +24,10 @@ class TvSeriesViewModelTest {
     lateinit var viewModel: TvSeriesViewModel
 
     @Mock
-    lateinit var observer: Observer<List<Entity>>
+    lateinit var observer: Observer<Resource<MovieResponse>>
 
     @Mock
-    lateinit var repo: FakeRepo
+    lateinit var repo: TmdbRepository
 
     @get:Rule
     val rule = InstantTaskExecutorRule()

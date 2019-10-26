@@ -5,12 +5,14 @@ import com.app.muhrahmatullah.dicodingjetpackmovie.entity.MovieResponse
 import com.app.muhrahmatullah.dicodingjetpackmovie.rest.ApiResponse
 import com.app.muhrahmatullah.dicodingjetpackmovie.rest.NetworkResource
 import com.app.muhrahmatullah.dicodingjetpackmovie.rest.Resource
+import com.app.muhrahmatullah.dicodingjetpackmovie.testing.OpenForTesting
 import retrofit2.Response
 import javax.inject.Inject
 
 /**
  * Created by muh.rahmatullah on 2019-10-26.
  */
+@OpenForTesting
 class TmdbRepository @Inject constructor(private val dataSource: RemoteDataSource) {
 
 
