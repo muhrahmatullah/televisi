@@ -62,6 +62,7 @@ class AppModule {
         return Retrofit.Builder().baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
+            .client(okHttpClient)
             .build()
             .create(MovieRest::class.java)
     }
