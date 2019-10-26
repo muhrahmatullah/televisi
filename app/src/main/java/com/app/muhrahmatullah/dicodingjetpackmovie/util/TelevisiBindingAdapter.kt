@@ -1,5 +1,6 @@
 package com.app.muhrahmatullah.dicodingjetpackmovie.util
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -15,17 +16,23 @@ object TelevisiBindingAdapter {
 
     @JvmStatic
     @BindingAdapter("loadImage")
-    fun loadImage(iv: ImageView, imageId: Int){
-        iv.load(imageId) {
+    fun loadImage(iv: ImageView, imageId: String){
+        iv.load("http://image.tmdb.org/t/p/w185$imageId") {
             crossfade(true)
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("visibleGone")
+    fun visibility(view: View, isVisible: Boolean) {
+        view.visibility = if (isVisible) View.VISIBLE else View.GONE
     }
 
     // Load image with success callback, not so straightforward in coil
     @JvmStatic
     @BindingAdapter("image", "imageLoadListener")
-    fun loadImageWithListener(iv: ImageView, imageId: Int, imageListener: ImageLoadingListener?){
-        iv.load(imageId) {
+    fun loadImageWithListener(iv: ImageView, imageId: String, imageListener: ImageLoadingListener?){
+        iv.load("http://image.tmdb.org/t/p/w185$imageId") {
             crossfade(true)
             if (imageListener != null) {
                 listener(object: Request.Listener{
@@ -46,7 +53,7 @@ object TelevisiBindingAdapter {
 
     @JvmStatic
     @BindingAdapter("rating")
-    fun rating(tv: TextView, text: String){
+    fun rating(tv: TextView, text: Double?){
         tv.text = String.format("Rating: %1s", text)
     }
 }

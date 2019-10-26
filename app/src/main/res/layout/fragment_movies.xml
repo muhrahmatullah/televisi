@@ -3,6 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="com.app.muhrahmatullah.dicodingjetpackmovie.rest.Status" />
+
+        <variable
+            name="resource"
+            type="com.app.muhrahmatullah.dicodingjetpackmovie.rest.Resource" />
+
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -17,14 +28,42 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ProgressBar
-            android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
+            tools:visibility="visible"
+            app:visibleGone= "@{resource.status == Status.LOADING}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/recyclerView" />
+        android:id="@+id/progressBar"
+
+        <TextView
+            android:id="@+id/error_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="😢"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:visibleGone= "@{resource.status == Status.ERROR}"
+            android:textSize="68sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+            app:layout_constraintStart_toStartOf="@+id/recyclerView"
+            app:layout_constraintTop_toTopOf="@+id/recyclerView" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:text="Uh oh, seems we got an error"
+            app:visibleGone= "@{resource.status == Status.ERROR}"
+            app:layout_constraintEnd_toEndOf="@+id/error_view"
+            app:layout_constraintStart_toStartOf="@+id/error_view"
+            app:layout_constraintTop_toBottomOf="@+id/error_view" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

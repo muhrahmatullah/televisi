@@ -7,7 +7,7 @@
 
         <variable
             name="entity"
-            type="com.app.muhrahmatullah.dicodingjetpackmovie.entity.Entity" />
+            type="com.app.muhrahmatullah.dicodingjetpackmovie.entity.Result" />
 
         <variable
             name="listener"
@@ -32,12 +32,12 @@
                 android:layout_marginEnd="16dp"
                 android:contentDescription="@string/image_poster"
                 android:scaleType="centerCrop"
-                app:image="@{entity.image}"
+                app:image="@{entity.poster_path}"
                 app:imageLoadListener="@{listener}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:transitionName="@{entity.title}"
+                app:transitionName="@{entity.title ?? entity.name}"
                 tools:src="@tools:sample/avatars" />
 
             <TextView
@@ -47,14 +47,14 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{entity.title}"
+                android:text="@{entity.title ?? entity.name}"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView"
-                app:transitionName="@{entity.desc}"
+                app:transitionName="@{entity.overview}"
                 tools:text="Gundala Putra Petir" />
 
             <TextView
@@ -65,7 +65,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/tv_title"
                 app:layout_constraintStart_toStartOf="@+id/tv_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title"
-                app:rating="@{entity.rating}"
+                app:rating="@{entity.vote_average}"
                 tools:text="Rating = 7.4" />
 
             <TextView
@@ -75,7 +75,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
-                android:text="@{entity.desc}"
+                android:text="@{entity.overview}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_rating"

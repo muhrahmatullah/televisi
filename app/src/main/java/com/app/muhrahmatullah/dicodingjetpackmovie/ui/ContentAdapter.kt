@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.muhrahmatullah.dicodingjetpackmovie.R
 import com.app.muhrahmatullah.dicodingjetpackmovie.databinding.ContentItemBinding
 import com.app.muhrahmatullah.dicodingjetpackmovie.entity.Entity
+import com.app.muhrahmatullah.dicodingjetpackmovie.entity.Result
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.AppExecutors
 import com.app.muhrahmatullah.dicodingjetpackmovie.util.DataBoundListAdapter
 
@@ -19,17 +20,17 @@ import com.app.muhrahmatullah.dicodingjetpackmovie.util.DataBoundListAdapter
  */
 class ContentAdapter(
     appExecutors: AppExecutors,
-    private val itemClickCallback: ((Entity, ImageView, TextView) -> Unit)?
-) : DataBoundListAdapter<Entity, ContentItemBinding>(
+    private val itemClickCallback: ((Result, ImageView, TextView) -> Unit)?
+) : DataBoundListAdapter<Result, ContentItemBinding>(
     appExecutors = appExecutors,
 
-    diffCallback = object : DiffUtil.ItemCallback<Entity>() {
-        override fun areItemsTheSame(oldItem: Entity, newItem: Entity): Boolean {
-            return oldItem.title == newItem.title
+    diffCallback = object : DiffUtil.ItemCallback<Result>() {
+        override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
+            return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Entity, newItem: Entity): Boolean {
-            return oldItem.desc == newItem.desc
+        override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
+            return oldItem.title == newItem.title
         }
 
     }
@@ -51,7 +52,7 @@ class ContentAdapter(
         return binding
     }
 
-    override fun bind(binding: ContentItemBinding, item: Entity) {
+    override fun bind(binding: ContentItemBinding, item: Result) {
         binding.movie = item
     }
 }

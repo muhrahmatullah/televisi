@@ -22,5 +22,13 @@ class TmdbRepository @Inject constructor(private val dataSource: RemoteDataSourc
         }.asLiveData()
     }
 
+    fun fetchTvSeries(): LiveData<Resource<MovieResponse>> {
+        return object: NetworkResource<MovieResponse>() {
+            override fun createCall(): LiveData<ApiResponse<MovieResponse>> {
+                return dataSource.fetchTvSeries()
+            }
+        }.asLiveData()
+    }
+
 
 }

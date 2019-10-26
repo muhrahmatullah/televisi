@@ -17,7 +17,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.app.muhrahmatullah.dicodingjetpackmovie.di.Injectable
+import com.app.muhrahmatullah.dicodingjetpackmovie.rest.Status
 import com.app.muhrahmatullah.dicodingjetpackmovie.testing.OpenForTesting
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.ContentAdapter
 import com.app.muhrahmatullah.dicodingjetpackmovie.ui.home.HomeFragmentDirections
@@ -47,8 +49,6 @@ class MoviesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
         super.onCreate(savedInstanceState)
-
-        moviesViewModel.triggerMovie()
     }
 
     override fun onCreateView(
@@ -66,8 +66,8 @@ class MoviesFragment : Fragment() {
 
         val rvAdapter = ContentAdapter(appExecutors) { item, imageView, textView ->
             val extras = FragmentNavigatorExtras(
-                imageView to item.title,
-                textView to item.desc
+                imageView to item.title!!,
+                textView to item.overview!!
             )
             navController().navigate(
                 HomeFragmentDirections.toDetailPage(item), extras
@@ -88,9 +88,15 @@ class MoviesFragment : Fragment() {
         adapter = rvAdapter
 
         moviesViewModel.data.observe(viewLifecycleOwner, Observer { movie ->
-              Log.v("TESTKU", movie.data.toString())
-//            adapter.submitList(movie)
+            fragmentMoviesBinding.resource = movie
+            when(movie.status) {
+                Status.LOADING -> {}
+                Status.ERROR -> {}
+                Status.SUCCESS -> adapter.submitList(movie.data?.results)
+            }
         })
+
+        moviesViewModel.triggerMovie()
 
     }
 

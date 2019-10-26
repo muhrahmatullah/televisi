@@ -6,7 +6,7 @@
     <data>
         <variable
             name="movie"
-            type="com.app.muhrahmatullah.dicodingjetpackmovie.entity.Entity" />
+            type="com.app.muhrahmatullah.dicodingjetpackmovie.entity.Result" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,8 +27,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loadImage="@{movie.image}"
-            app:transitionName="@{movie.title}"
+            app:loadImage="@{movie.poster_path}"
+            app:transitionName="@{movie.poster_path}"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -39,8 +39,8 @@
             android:ellipsize="end"
             android:padding="8dp"
             android:textAlignment="center"
-            android:text="@{movie.title}"
-            app:transitionName="@{movie.desc}"
+            android:text="@{movie.title ?? movie.name}"
+            app:transitionName="@{movie.overview}"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/poster_img"

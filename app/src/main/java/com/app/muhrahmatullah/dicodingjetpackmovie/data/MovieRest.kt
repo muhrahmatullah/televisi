@@ -10,7 +10,10 @@ import retrofit2.http.GET
  */
 interface MovieRest {
 
-    @GET("movie/now_playing")
+    @GET("movie/popular")
     fun fetchMovie(): LiveData<ApiResponse<MovieResponse>>
+
+    @GET("tv/popular")
+    fun fetchTvSeries(): LiveData<ApiResponse<MovieResponse>>
 
 }
