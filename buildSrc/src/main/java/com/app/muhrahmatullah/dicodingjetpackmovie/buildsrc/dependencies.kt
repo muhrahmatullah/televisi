@@ -89,6 +89,8 @@ object Libs {
             const val runner = "androidx.test:runner:$version"
             const val rules = "androidx.test:rules:$version"
             const val extRunner = "androidx.test.ext:junit:$version"
+            const val idlingResource = "androidx.test.espresso:espresso-idling-resource:3.2.0"
+            const val contribEspresso = "androidx.test.espresso:espresso-contrib:3.2.0"
 
             const val espressoCore = "androidx.test.espresso:espresso-core:3.2.0"
         }
